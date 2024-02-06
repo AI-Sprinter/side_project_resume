@@ -2,3 +2,7 @@ openai==0.28.0
 fastapi==0.103.1
 uvicorn
 pydantic==2.3.0
+python-dotenv==1.0.1
+streamlit==1.31.0
+streamlit-pills==0.3.0
+requests==2.31.0
