@@ -7,6 +7,10 @@ import os
 import openai
 from fastapi import FastAPI
 from pydantic import BaseModel
+from dotenv import load_dotenv
+
+# .env 파일 로드
+load_dotenv()
 
 # OpenAI API 키 설정
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -21,7 +25,9 @@ def chat_with_openai(text):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "챗봇은 친절하고 유익한 대화를 제공한다."},
+                {"role": "system", "content": """# 지시문
+- 나의 경험을 **배경 직군의 전문적 용어를 사용한 수치 기반의 성과 문장**으로 작성해줘.
+- 만약 수치 기반 성과가 없다면 **수치를 임의로 작성해줘** #출력문 - 각 경험에 대응하는 문장을 bullet point로 구분지어서 작성해줘 -두 줄 이내의 문장으로 짧게 요약해줘"""},
                 {"role": "user", "content": text},
             ]
         )
